@@ -5,11 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
-public class IntroActivity extends Activity{
+public class IntroActivity extends Activity implements View.OnClickListener{
     String TAG=this.getClass().getName();
     Animation animation;
     LinearLayout intro_layout;
@@ -23,19 +24,14 @@ public class IntroActivity extends Activity{
 
         intro_layout.setAnimation(animation); //적용대상 지정
         intro_layout.startAnimation(animation);
+
+        intro_layout.setOnClickListener(this);
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        /*로그인 액티비티 띄우기!!*/
-        Intent intent = null;
-        if(intent ==null) {
-            intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-
-            Log.d(TAG, "생성");
-        }
-        return super.onTouchEvent(event);
+    public void onClick(View v) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 }
 
